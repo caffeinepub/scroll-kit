@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Scroll Kit Dark Theme - OKLCH tokens */
+    --background: 0.10 0 0;
+    --foreground: 0.97 0 0;
+    --card: 0.13 0 0;
+    --card-foreground: 0.97 0 0;
+    --popover: 0.16 0 0;
+    --popover-foreground: 0.97 0 0;
+
+    /* Primary = electric blue */
+    --primary: 0.62 0.19 240;
+    --primary-foreground: 0.97 0 0;
+
+    --secondary: 0.18 0 0;
+    --secondary-foreground: 0.97 0 0;
+
+    --muted: 0.18 0 0;
+    --muted-foreground: 0.65 0 0;
+
+    --accent: 0.20 0.06 240;
+    --accent-foreground: 0.97 0 0;
+
+    --destructive: 0.60 0.22 25;
+    --destructive-foreground: 0.97 0 0;
+
+    --border: 0.23 0 0;
+    --input: 0.20 0 0;
+    --ring: 0.62 0.19 240;
+
+    --chart-1: 0.62 0.19 240;
+    --chart-2: 0.70 0.15 180;
+    --chart-3: 0.75 0.18 80;
+    --chart-4: 0.65 0.20 320;
+    --chart-5: 0.70 0.20 40;
+
+    --sidebar: 0.11 0 0;
+    --sidebar-foreground: 0.97 0 0;
+    --sidebar-primary: 0.62 0.19 240;
+    --sidebar-primary-foreground: 0.97 0 0;
+    --sidebar-accent: 0.16 0 0;
+    --sidebar-accent-foreground: 0.97 0 0;
+    --sidebar-border: 0.22 0 0;
+    --sidebar-ring: 0.62 0.19 240;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+}
+
+@layer utilities {
+  .font-mono-display {
+    font-family: 'Geist Mono', monospace;
+  }
+
+  .font-body {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .sk-card {
+    background: oklch(var(--card));
+    border: 1px solid oklch(var(--border));
+    border-radius: var(--radius);
+  }
+
+  .sk-elevated {
+    background: oklch(var(--popover));
+    border: 1px solid oklch(var(--border));
+  }
+
+  .sk-noise {
+    position: relative;
+  }
+
+  .sk-noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 0;
+  }
+
+  .sk-glow {
+    box-shadow: 0 0 0 1px oklch(var(--primary) / 0.3), 0 4px 24px oklch(var(--primary) / 0.1);
+  }
+
+  .animate-like {
+    animation: likeHeart 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes likeHeart {
+  0% { transform: scale(1); }
+  20% { transform: scale(1.4); }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-blue {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(var(--primary) / 0); }
+  50% { box-shadow: 0 0 0 8px oklch(var(--primary) / 0.15); }
+}
